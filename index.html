@@ -1,15 +1,135 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="h-full overflow-hidden">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="YSI Application" />
-    <link rel="manifest" href="/manifest.json" />
-    <title>YSI</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/index.tsx"></script>
-  </body>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>YSI | Imperial Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              royal: {
+                50: '#f9fafb', 100: '#f3f4f6', 200: '#e5e7eb', 300: '#d1d5db',
+                400: '#9ca3af', 500: '#6b7280', 600: '#4b5563', 700: '#374151',
+                800: '#1f2937', 900: '#111827', 950: '#030712',
+              },
+              obsidian: {
+                DEFAULT: '#000000',
+                light: '#0a0a0a',
+                panel: '#0d0d0d'
+              },
+              gold: {
+                start: '#bf953f',
+                mid: '#fcf6ba',
+                end: '#aa771c',
+                border: '#b38728',
+                heritage: '#855d10' /* Darker gold for light mode legibility */
+              }
+            },
+            fontFamily: { serif: ['Cinzel', 'serif'], sans: ['Poppins', 'sans-serif'] },
+            animation: { 
+              'fade-in': 'fadeIn 0.2s ease-out', 
+              'fade-in-up': 'fadeInUp 0.3s ease-out',
+            },
+            keyframes: {
+              fadeIn: { '0%': { opacity: '0' }, '100%': { opacity: '1' } },
+              fadeInUp: { '0%': { opacity: '0', transform: 'translateY(8px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } },
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      :root { --app-height: 100%; }
+      html, body {
+        height: var(--app-height);
+        overflow: hidden;
+        margin: 0;
+        padding: 0;
+        background: #000;
+      }
+      .gold-text {
+        background: linear-gradient(to right, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      /* Fallback for light mode where gradient might be too light */
+      .light .gold-text {
+        background: none;
+        -webkit-background-clip: initial;
+        -webkit-text-fill-color: #855d10;
+        color: #855d10;
+      }
+      .gold-bg {
+        background: linear-gradient(to right, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
+      }
+      .glass-panel {
+        backdrop-filter: blur(16px);
+      }
+      .dark .glass-panel {
+        background: rgba(0, 0, 0, 0.9);
+        border: 1px solid rgba(191, 149, 63, 0.2);
+      }
+      .light .glass-panel {
+        background: rgba(255, 255, 255, 0.98);
+        border: 1px solid rgba(179, 135, 40, 0.3);
+      }
+      .regal-card {
+        border: 1px solid #b38728;
+      }
+      .dark .regal-card { background: #0d0d0d; }
+      .light .regal-card { background: #ffffff; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+      
+      .mobile-frame {
+        height: 100%;
+        width: 100%;
+        max-width: 450px;
+        margin: 0 auto;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        border-left: 1px solid rgba(191, 149, 63, 0.1);
+        border-right: 1px solid rgba(191, 149, 63, 0.1);
+      }
+      
+      .custom-scroll::-webkit-scrollbar { width: 3px; }
+      .custom-scroll::-webkit-scrollbar-thumb { background: #b38728; border-radius: 10px; }
+
+      .theme-transition {
+        transition: background-color 0.2s ease, color 0.2s ease;
+      }
+      
+      input, select, textarea {
+        background-color: rgba(0,0,0,0.05) !important;
+      }
+      .dark input, .dark select, .dark textarea {
+        background-color: rgba(255,255,255,0.05) !important;
+        color: white !important;
+      }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script type="importmap">
+{
+  "imports": {
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.31.0",
+    "react": "https://aistudiocdn.com/react@^19.2.1",
+    "react/": "https://aistudiocdn.com/react@^19.2.1/",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.1/",
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.468.0",
+    "vite": "https://esm.sh/vite@^7.3.1",
+    "@vitejs/plugin-react": "https://esm.sh/@vitejs/plugin-react@^5.1.3"
+  }
+}
+</script>
+  <link rel="stylesheet" href="/index.css">
+</head>
+  <body class="theme-transition">
+    <div id="root" class="h-full"></div>
+    <script type="module" src="index.tsx"></script>
+  <script type="module" src="/index.tsx"></script>
+</body>
 </html>

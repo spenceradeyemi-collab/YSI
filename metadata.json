@@ -1,19 +1,8 @@
 {
-  "version": "1.0.0",
-  "permissions": [
-    "notifications",
-    "storage",
+  "name": "Yoruba Supreme Indigenes",
+  "description": "A comprehensive portal for the Yoruba Supreme Indigenes club, featuring heritage exploration, language learning, creative tools, and member services.",
+  "requestFramePermissions": [
     "camera",
-    "microphone",
-    "geolocation"
-  ],
-  "features": [
-    "offline_support",
-    "push_notifications",
-    "local_storage"
-  ],
-  "api_endpoints": {
-    "gemini": "https://generativelanguage.googleapis.com/v1beta/",
-    "notifications": "/api/notifications"
-  }
+    "microphone"
+  ]
 }

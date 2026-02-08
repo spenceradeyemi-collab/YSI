@@ -1,39 +1,17 @@
+
 {
-  "name": "YSI Application",
-  "short_name": "YSI",
-  "description": "YSI - Your Service Interface",
-  "start_url": "/",
+  "name": "Yoruba Supreme Indigenes",
+  "short_name": "YSI Portal",
+  "description": "The official digital gateway for the Yoruba Supreme Indigenes club.",
+  "start_url": "./",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#000000",
-  "scope": "/",
+  "background_color": "#fffbf2",
+  "theme_color": "#b45309",
   "icons": [
     {
-      "src": "/icon-192.png",
-      "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any"
-    },
-    {
-      "src": "/icon-512.png",
+      "src": "https://file-service.aistudio.google.com/file/files/978h4g5j2k3l",
       "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any"
-    }
-  ],
-  "categories": ["productivity"],
-  "screenshots": [
-    {
-      "src": "/screenshot-1.png",
-      "sizes": "540x720",
-      "type": "image/png",
-      "form_factor": "narrow"
-    },
-    {
-      "src": "/screenshot-2.png",
-      "sizes": "1280x720",
-      "type": "image/png",
-      "form_factor": "wide"
+      "type": "image/png"
     }
   ]
 }
