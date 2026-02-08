@@ -1,0 +1,19 @@
+{
+  "version": "1.0.0",
+  "permissions": [
+    "notifications",
+    "storage",
+    "camera",
+    "microphone",
+    "geolocation"
+  ],
+  "features": [
+    "offline_support",
+    "push_notifications",
+    "local_storage"
+  ],
+  "api_endpoints": {
+    "gemini": "https://generativelanguage.googleapis.com/v1beta/",
+    "notifications": "/api/notifications"
+  }
+}
