@@ -2,7 +2,7 @@
  * Service for handling push notifications
  */
 
-import { Notification } from '../types';
+import type { Notification } from '../types';
 
 export const notificationService = {
   async requestPermission(): Promise<boolean> {
@@ -74,7 +74,7 @@ export const notificationService = {
       
       return registration.pushManager.subscribe({
         userVisibleOnly: true,
-        applicationServerKey: process.env.REACT_APP_VAPID_PUBLIC_KEY,
+        applicationServerKey: process.env.REACT_APP_VAPID_PUBLIC_KEY || '',
       });
     } catch (error) {
       console.error('Error subscribing to push notifications:', error);

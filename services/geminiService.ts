@@ -2,8 +2,17 @@
  * Service for interacting with Google Gemini API
  */
 
-const GEMINI_API_KEY = process.env.REACT_APP_GEMINI_API_KEY;
+const GEMINI_API_KEY = process.env.REACT_APP_GEMINI_API_KEY || '';
 const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent';
+
+export const STORAGE_KEYS = {
+  CURRENT_USER: 'ysi_current_user',
+  USERS: 'ysi_users',
+  MASTER_WISDOM: 'ysi_master_wisdom',
+  MASTER_CHAPTER: 'ysi_master_chapter',
+  MASTER_LOGO: 'ysi_master_logo',
+  POSTS: 'ysi_posts',
+};
 
 export interface GeminiRequest {
   contents: Array<{

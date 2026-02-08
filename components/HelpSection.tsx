@@ -1,6 +1,11 @@
 import React from 'react';
+import { Member } from '../types';
 
-const HelpSection: React.FC = () => {
+interface HelpSectionProps {
+  currentUser?: Member;
+}
+
+const HelpSection: React.FC<HelpSectionProps> = ({ currentUser }) => {
   return (
     <div className="help-container">
       <h1>Help & Support</h1>

@@ -6,10 +6,10 @@ import { LanguageTutor } from './components/LanguageTutor';
 import { MemberProfile } from './components/MemberProfile';
 import { CreativeStudio } from './components/CreativeStudio';
 import { AdminDashboard } from './components/AdminDashboard';
-import { Auth } from './components/Auth';
+import Auth from './components/Auth';
 import { MemberDirectory } from './components/MemberDirectory';
 import { BackgroundMusic } from './components/BackgroundMusic';
-import { HelpSection } from './components/HelpSection';
+import HelpSection from './components/HelpSection';
 import { CreatePost } from './components/CreatePost';
 import { MembershipApplication } from './components/MembershipApplication';
 import { WaitingRoom } from './components/WaitingRoom';
@@ -101,7 +101,7 @@ const App: React.FC = () => {
     loadBoard();
   };
 
-  if (!user) return <Auth onLogin={(u, rem) => { 
+  if (!user) return <Auth onLogin={(u: Member, rem: boolean) => { 
     setUser(u); 
     if (rem) {
       localStorage.setItem(STORAGE_KEYS.CURRENT_USER, JSON.stringify(u));
