@@ -1,15 +1,19 @@
-/** Official YSI brand assets & defaults */
+// constants/brand.ts
+
 export const YSI_LOGO = '/ysi-logo.png';
 
-const LEGACY_LOGO_MARKERS = [
-  'aistudio.google.com',
-  'file-service.aistudio',
-  '978h4g5j2k3l',
-];
+export function resolveLogoUrl(url: string | null | undefined): string {
+  if (!url) return YSI_LOGO;
 
-/** Prefer the new logo; ignore stale AI Studio URLs in localStorage. */
-export function resolveLogoUrl(stored?: string | null): string {
-  if (!stored || !stored.trim()) return YSI_LOGO;
-  if (LEGACY_LOGO_MARKERS.some((m) => stored.includes(m))) return YSI_LOGO;
-  return stored;
+  // Force the new logo and ignore old AI Studio / external URLs
+  if (
+    url.includes('aistudio') ||
+    url.includes('file-service') ||
+    url.includes('google') ||
+    !url.startsWith('/')
+  ) {
+    return YSI_LOGO;
+  }
+
+  return url;
 }
