@@ -1,0 +1,40 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function isSelf(uid) {
+      return signedIn() && request.auth.uid == uid;
+    }
+
+    function memberDoc(uid) {
+      return get(/databases/$(database)/documents/members/$(uid)).data;
+    }
+
+    function isAdmin() {
+      return signedIn()
+        && exists(/databases/$(database)/documents/members/$(request.auth.uid))
+        && memberDoc(request.auth.uid).isAdmin == true;
+    }
+
+    // Members: own profile read/write; admins can read/write all
+    match /members/{uid} {
+      allow read: if isSelf(uid) || isAdmin();
+      allow create: if isSelf(uid);
+      // Users may update their own profile but cannot self-promote to admin
+      // or force status to active (except DEV flows that use admin account).
+      allow update: if isAdmin()
+        || (isSelf(uid)
+            && !request.resource.data.diff(resource.data).affectedKeys()
+                  .hasAny(['isAdmin', 'adminRole', 'permissions'])
+            && (
+              // Allow normal field edits while pending/intending
+              request.resource.data.status in ['pending', 'intending', 'rejected']
+              || resource.data.status == request.resource.data.status
+            ));
+      allow delete: if isAdmin();
+    }
+  }
+}
